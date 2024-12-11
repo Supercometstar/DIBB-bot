@@ -22,7 +22,10 @@ exports.saveLocation = path.join(__dirname, '../output', 'result.xlsx')
 
 exports.values = {
 	pageNum: 1,
-	pdfCount: 0
+	pdfCount: 0,
+	startFlag: false,
+	readLogIdx: 0
 }
 
 exports.pdfInfo = []
+exports.logs = []

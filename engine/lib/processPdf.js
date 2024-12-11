@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const pdfExtract = require('./pdfExtract')
 
-const { values, pdfInfo } = require('../utils/constants')
+const { values, pdfInfo, logs } = require('../utils/constants')
 
 const checkDownloadComplete = async (type, pdfName) => {
 	const pdfs = fs.readdirSync(path.join(__dirname, '../pdfs'))
@@ -13,7 +13,7 @@ const checkDownloadComplete = async (type, pdfName) => {
 		let end = Date.now()
 		pdfInfo.push(data)
 		values.pdfCount ++
-		console.log(`Processing ${values.pdfCount} PDF - ${pdfName} - ${end - start}`)
+		logs.push(`Processing ${values.pdfCount} PDF - ${pdfName} - ${end - start}`)
 	}else {
 		setTimeout(() => {
 			checkDownloadComplete(type, pdfName)

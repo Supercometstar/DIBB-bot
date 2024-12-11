@@ -1,9 +1,4 @@
-const { 
-	searchValues,
-	showOnly
-} = require('../utils/constants')
-
-const querySet = async (page) => {
+const querySet = async (page, searchValues, showOnly) => {
 
 	await page.waitForSelector('#ctl00_cph1_ddlCategory')
 	await page.select('#ctl00_cph1_ddlCategory', 'fsc')

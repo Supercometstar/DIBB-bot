@@ -2,9 +2,9 @@ const processPdf = require('./processPdf')
 const { delay } = require('../utils/functions')
 const passWarningPage = require('./passWarningPage')
 
-const { values, lastDay } = require('../utils/constants')
+const { values, logs } = require('../utils/constants')
 
-const getPdfList = async (browser, page) => {
+const getPdfList = async (browser, page, lastDay) => {
 
 	for (let i=0; i<2; i++) {
 		await page.waitForNavigation()
@@ -13,7 +13,7 @@ const getPdfList = async (browser, page) => {
 	}
 
 	while (true) {
-		console.log(`Processing ${values.pageNum} Page`)
+		logs.push(`Processing ${values.pageNum} Page`)
 		await page.waitForNavigation()
 		await page.waitForSelector('#ctl00_cph1_grdRfqSearch tr.BgWhite', { timeout: 0 })
 		const pdfList = await page.$$('#ctl00_cph1_grdRfqSearch tr.BgWhite, #ctl00_cph1_grdRfqSearch tr.BgSilver')

@@ -1,8 +1,14 @@
 {
   "dependencies": {
     "axios": "^1.7.9",
+    "electron": "^33.2.1",
+    "express": "^4.21.2",
     "pdf-parse": "^1.1.1",
     "puppeteer": "^23.10.1",
     "xlsx": "^0.18.5"
+  },
+  "scripts": {
+    "app-start": "electron ./application/app",
+    "service-start": "node index"
   }
 }
