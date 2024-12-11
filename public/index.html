@@ -18,15 +18,16 @@
 <body onload="init()">
   <div class="min-h-screen bg-gray-100">
     <!-- Header -->
-    <header class="h-[80px] bg-gradient-to-r from-blue-500 to-purple-600 text-white flex flex-col justify-center pl-5 relative">
+    <header class="h-[200px] bg-gradient-to-r from-blue-500 to-purple-600 text-white flex flex-col justify-center items-center relative">
       <h1 class="text-4xl font-bold mb-2">Dibbs Scraper</h1>
+      <p class="text-xl">Efficiently Extracting Data from Dibbs.bsm.dla.mil for Easy Access</p>
       <div class="absolute inset-0 bg-gradient-radial from-white/10 to-transparent pointer-events-none"></div>
     </header>
 
     <!-- Main Container -->
     <main class="container mx-auto py-8 px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Column 1 -->
-      <section class="space-y-6">
+      <section class="space-y-3">
         <!-- Item Select Component -->
         <div class="relative">
           <!-- Search Input -->
@@ -75,6 +76,18 @@
           onclick="handleScrap()"
         >
           Scrap
+        </button>
+        <button 
+          class="w-full bg-red-500 text-white py-2 px-4 rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+          onclick="stop()"
+        >
+          Stop
+        </button>
+        <button 
+          class="w-full bg-green-500 text-white py-2 px-4 rounded-lg shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+          onclick="saveExcel()"
+        >
+          Save to Excel
         </button>
       </section>
 

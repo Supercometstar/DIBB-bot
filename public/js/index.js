@@ -27,12 +27,19 @@ const filterOptionsRender = () => {
 }
 
 const handleScrap = () => {
-	console.log(searchValues, showOnly, lastDay)
 	sendData('start', { searchValues, showOnly, lastDay })
 }
 
 const getLog = () => {
-	sendData('getLog', {})
+	sendData('getLog')
+}
+
+const saveExcel = () => {
+	sendData('saveExcel')
+}
+
+const stop = () => {
+	sendData('stop')
 }
 
 const handleLog = (event, data) => {

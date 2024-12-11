@@ -1,28 +1,35 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const engine = require('../engine')
+const engine = require('./engine')
+
+var win
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1100,
-    height: 768,
-    icon: path.join(__dirname, '../public/assets/img', 'favicon.png'),
+  win = new BrowserWindow({
+    width: 1280,
+    height: 800,
+    icon: path.join(__dirname, './public/assets/img', 'favicon.png'),
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, '../public/js/preload.js')
+      preload: path.join(__dirname, './public/js/preload.js')
     },
     autoHideMenuBar: true
   })
 
-  win.loadFile('../public/index.html')
+  win.loadFile('./public/index.html')
 }
 
 ipcMain.on('fromRenderer', (event, message) => {
   switch (message.type) {
-    case 'start': engine.start(message.searchValues, message.showOnly, message.lastDay)
+    case 'start': engine.start(win, message.searchValues, message.showOnly, message.lastDay)
       break
     case 'getLog': let extraLogs = engine.getLog()
-      event.reply('fromMain', extraLogs);
+      event.reply('fromMain', extraLogs)
+      break
+    case 'saveExcel': engine.saveExcel(win)
+      break
+    case 'stop': engine.stop()
+      break
   }
 })
 

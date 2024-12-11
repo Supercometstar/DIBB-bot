@@ -8,7 +8,7 @@ const DOM = (id='', tag='div') => {
 	return dom
 }
 
-const sendData = (type, data) => {
+const sendData = (type, data={}) => {
 	if (window.electron) {
 		window.electron.sendToMain({ type, ...data })
 	}else {

@@ -1,4 +1,3 @@
-const { delay } = require('../utils/functions')
 const fs = require('fs')
 const path = require('path')
 const pdfExtract = require('./pdfExtract')
