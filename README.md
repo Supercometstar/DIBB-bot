@@ -72,10 +72,6 @@ The project includes a configuration file where you can adjust certain settings:
 
 If you'd like to contribute to this project, please fork the repository, create a branch, and submit a pull request with your changes.
 
-## License
-
-Specify the license type here (e.g., MIT, GPL-3.0).
-
 ## Acknowledgments
 
 - **Puppeteer** for headless browser automation.
