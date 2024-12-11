@@ -21,7 +21,7 @@ const completeListener = async (browser, win) => {
 			logs.push(`Saved in ${saveLocation}!`)
 			logs.push('Done!')
 		}catch (e) {
-			// logs.push(`ERROR --->${e}`)
+			logs.push('Something went wrong. Try again!')
 		}
 	}else {
 		setTimeout(() => {
@@ -60,7 +60,7 @@ module.exports = {
 					completeListener(values.browser, win)
 				}, 1000)
 		}catch (e) {
-			// logs.push(`ERROR --->${e}`)
+			logs.push('Something went wrong. Try again!')
 		}
 		values.startFlag = false
 	},
