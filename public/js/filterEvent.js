@@ -6,3 +6,13 @@ const handleFilter = (item) => {
 		showOnly.splice(idx, 1)
 	}
 }
+
+const setFilter = () => {
+	filterOptions.map((item, idx) => {
+		if (showOnly.includes(item.value)) {
+			DOM(item.value).checked = true
+		}else {
+			DOM(item.value).checked = false
+		}
+	})
+}

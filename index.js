@@ -30,6 +30,10 @@ ipcMain.on('fromRenderer', (event, message) => {
       break
     case 'stop': engine.stop()
       break
+    case 'saveData': 
+      delete message.type
+      engine.saveSearchOptions(win, message)
+      break
   }
 })
 

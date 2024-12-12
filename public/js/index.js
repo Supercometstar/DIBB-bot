@@ -4,6 +4,7 @@ const filterOptionsRender = () => {
 		dom.className = 'flex items-center space-x-3'
 
 		let input = DOM('', 'input')
+		input.id = item.value
 		input.type = 'checkbox'
 		input.className = 'h-5 w-5 min-w-5 min-h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500'
 		input.onchange = handleFilter

@@ -4,6 +4,7 @@ const {
 	passWarningPage,
 	querySet,
 	getPdfList,
+	searchOptionsToFile,
 	writeOrAppendToExcel
 } = require('./lib')
 
@@ -82,5 +83,18 @@ module.exports = {
 		values.browser.close()
 		values.startFlag = false
 		logs.push('Stopped Scraping!')
+	},
+	saveSearchOptions: async (win, data) => {
+		try{
+			if (data.searchValues.length === 0 && data.showOnly.length === 0) {
+				logs.push('Before download, input search options!')
+				return
+			}
+			const saveLocation = await showSaveDialog(win, 'searchOption')
+			searchOptionsToFile(data, saveLocation)
+			logs.push(`Searech options saved in ${saveLocation}!`)
+		}catch (e) {
+			logs.push('Something went wrong. Try choose other path!')
+		}
 	}
 }

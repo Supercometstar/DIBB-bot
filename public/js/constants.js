@@ -766,6 +766,6 @@ const filterOptions = [{
 
 var dropdownFocus = 0
 
-const searchValues = []
-const showOnly = []
+var searchValues = []
+var showOnly = []
 var lastDay = 3

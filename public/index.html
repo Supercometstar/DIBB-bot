@@ -12,6 +12,7 @@
   <script type="text/javascript" src="./js/searchEvent.js"></script>
   <script type="text/javascript" src="./js/filterEvent.js"></script>
   <script type="text/javascript" src="./js/dayEvent.js"></script>
+  <script type="text/javascript" src="./js/fileEvent.js"></script>
   <script type="text/javascript" src="./js/logViewer.js"></script>
   <script type="text/javascript" src="./js/index.js"></script>
 </head>
@@ -31,15 +32,49 @@
         <!-- Item Select Component -->
         <div class="relative">
           <!-- Search Input -->
+
           <label for="search-input" class="block text-gray-700 font-medium">Search</label>
-          <input 
-            id="search-input" 
-            type="text" 
-            placeholder="Search for an item..."
-            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            oninput="handleSearch()"
-            onkeydown="handleSearchKeyEvent(event)"
-          />
+          <div class="flex items-center space-x-2">
+            <!-- Input Field -->
+            <input 
+                id="search-input" 
+                type="text" 
+                placeholder="Search for an item..." 
+                class="flex-grow px-4 py-2 border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                oninput="handleSearch()"
+                onkeydown="handleSearchKeyEvent(event)"
+            />
+            <!-- Icon Button -->
+            <div class="relative group">
+                <button 
+                  class="p-3 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600 transition-colors"
+                  onclick="handleDownloadFile()"
+                >
+                    <!-- FontAwesome Download Icon -->
+                    <i class="fa-solid fa-download"></i>
+                </button>
+
+                <!-- Tooltip -->
+                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max px-3 py-1 text-sm text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Search values download
+                </div>
+            </div>
+            <div class="relative group">
+                <button 
+                  class="p-3 py-2 text-white bg-green-500 rounded-full hover:bg-green-600 transition-colors" 
+                  onclick="handleUploadFile()"
+                >
+                    <!-- FontAwesome Download Icon -->
+                    <i class="fa-solid fa-upload"></i>
+                </button>
+                <input id="upload-file-input" type="file" hidden>
+
+                <!-- Tooltip -->
+                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max px-3 py-1 text-sm text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                    Search values upload
+                </div>
+            </div>
+        </div>
           <div class="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-10">
             <ul id="searched-list" class="divide-y divide-gray-200 max-h-[400px] overflow-auto"></ul>
           </div>

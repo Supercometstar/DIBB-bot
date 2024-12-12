@@ -1,13 +1,15 @@
 const handleSearch = () => {
 
+	dropdownFocus = 0
 	DOM('searched-list').innerHTML = ''
-	
+
 	if (DOM('search-input').value !== '') {
 		codeOptions.filter((item) => item.label.includes(DOM('search-input').value) || item.value.includes(DOM('search-input').value))
 					.map((item, idx) => {
 						let dom = DOM('', 'li')
 						dom.tabindex = idx
-						if (idx === 0) dom.className = 'px-4 py-2 bg-gray-100 hover:bg-gray-100 cursor-pointer'
+						if (searchValues.includes(Number(item.value))) dom.className = 'px-4 py-2 bg-blue-300 cursor-pointer'
+						else if (idx === 0) dom.className = 'px-4 py-2 bg-gray-100 hover:bg-gray-100 cursor-pointer'
 						else dom.className = 'px-4 py-2 hover:bg-gray-100 cursor-pointer'
 						dom.innerHTML = `${item.value} - ${item.label}`
 						dom.value = item.value
@@ -25,10 +27,12 @@ const searchedCount = () => {
 
 }
 
-const addSearchValue = (item) => {
+const addSearchValue = (item, set=false) => {
 	
-	if (searchValues.includes(item.target.value)) return
-	searchValues.push(item.target.value)
+	if (!set) {
+		if (searchValues.includes(item.target.value)) return
+		searchValues.push(item.target.value)
+	}
 
 	DOM('search-input').value = ''
 	DOM('searched-list').innerHTML = ''
@@ -54,6 +58,24 @@ const addSearchValue = (item) => {
 
 }
 
+const setSearchValues = () => {
+	if (searchValues.length === 0) {
+		DOM('selected-group').innerHTML = 'No selected'
+	}else {
+		DOM('selected-group').innerHTML = ''
+	}
+	console.log(searchValues)
+	codeOptions.filter((item) => searchValues.includes(Number(item.value))).map((item, idx) => {
+		console.log(item, 'item')
+		addSearchValue({ 
+			target: {
+				value: Number(item.value),
+				innerHTML: `${item.value} - ${item.label}`
+			}
+		}, true)
+	})
+}
+
 const removeSearchValue = (item) => {
 
 	let idx = searchValues.indexOf(item.target.parentElement.value)
@@ -75,10 +97,17 @@ const handleSearchKeyEvent = (e) => {
 		Array.from(DOM('searched-list').children).map((item, idx) => {
 			if (idx === dropdownFocus) addSearchValue({ target: item })
 		})
-		dropdownFocus = 0
 	}
 	Array.from(DOM('searched-list').children).map((item, idx) => {
-		if (idx === dropdownFocus) {
+		if (searchValues.includes(Number(item.value))) {
+			item.className = 'px-4 py-2 bg-blue-300 cursor-pointer'
+			item.scrollIntoView({
+      			block: 'center',
+      			inline: 'nearest'
+      		})
+      		document.documentElement.scrollTo(0, 0)
+		}
+		else if (idx === dropdownFocus) {
 			item.className = 'px-4 py-2 bg-gray-100 hover:bg-gray-100 cursor-pointer'
 			item.scrollIntoView({
       			block: 'center',
