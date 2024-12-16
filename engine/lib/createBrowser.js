@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports = async () => {
 	const browser = await puppeteer.launch({
-		headless: false,
+		headless: true,
 		protocolTimeout: 1000000000,
 		args: [
 			'--disable-notifications',
