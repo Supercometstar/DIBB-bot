@@ -22,7 +22,7 @@ const completeListener = async (browser, win) => {
 			logs.push(`Saved in ${saveLocation}!`)
 			logs.push('Done!')
 		}catch (e) {
-			logs.push('Something went wrong. Try again!')
+			logs.push(`Something went wrong. Try again!\n ERROR ---> ${e}`)
 		}
 	}else {
 		setTimeout(() => {
@@ -61,7 +61,7 @@ module.exports = {
 					completeListener(values.browser, win)
 				}, 1000)
 		}catch (e) {
-			logs.push('Something went wrong. Try again!')
+			logs.push(`Something went wrong. Try again!\n ERROR ---> ${e}`)
 		}
 		values.startFlag = false
 	},
@@ -94,7 +94,7 @@ module.exports = {
 			searchOptionsToFile(data, saveLocation)
 			logs.push(`Searech options saved in ${saveLocation}!`)
 		}catch (e) {
-			logs.push('Something went wrong. Try choose other path!')
+			logs.push(`Something went wrong. Try choose other path!\n ERROR ---> ${e}`)
 		}
 	}
 }

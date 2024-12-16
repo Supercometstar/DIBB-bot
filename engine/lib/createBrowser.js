@@ -1,9 +1,9 @@
 const puppeteer = require('puppeteer')
+const path = require('path')
 
 module.exports = async () => {
 	const browser = await puppeteer.launch({
-		executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-		headless: true,
+		headless: false,
 		protocolTimeout: 1000000000,
 		args: [
 			'--disable-notifications',
@@ -15,4 +15,4 @@ module.exports = async () => {
 	})
 
 	return browser
-} 
+}
