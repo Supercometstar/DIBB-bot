@@ -12,7 +12,7 @@ const patterns = {
     "Item Description": /ITEM DESCRIPTION\s+([^\n]+)/,
     Type: null, // Info from DIBBS, handled separately
     "Drawing Information": /CRITICAL APPLICATION ITEM\s+([^\n]+)/,
-    "Manufacturer Required": null, // Info often not mentioned
+    "Manufacturer Required": /.*P\/N\s+([A-Z0-9\-]+).*/g,
     "Procurement History": /Procurement History([\s\S]*?)(?=\n{2,}|$)/, // Capture everything after 'Procurement History'
     "Procurement History1": /SECTION A\nProcurement History([\s\S]*?)(?=\n{2,}|$)/, // Capture everything after 'Procurement History'
     "CLIN 0001 Qty": /CLIN([\s\S]*?)(?=\n{2,}|$)/,
@@ -20,6 +20,7 @@ const patterns = {
     "Unit Count": null,
     "Delievery Date Due": /DELIVERY \(IN DAYS\):\s*(\S+)/,
     "Inspection Point": /INSPECTION POINT:\s+(\S+)/,
+    "Acceptance Point": /ACCEPTANCE POINT:\s+(\S+)/,
     "Government First Article Testing": null, // Info not mentioned in most cases
     "Contractor First Article Testing": null, // Info not mentioned in most cases
     "Government Production Lost Testing": null, // Info not mentioned
@@ -68,6 +69,13 @@ function extractFieldData(inputText, patterns) {
             if (key == "Packaging Requirements"){
                 // console.log(match[0])
                 extractedData[key] = match ? match[0] : 'no';
+                continue
+            }
+            if (key == "Manufacturer Required"){
+                extractedData[key] = match ? match : 'no';
+                if( extractedData[key] != "no")
+                    extractedData[key] = match.join("\n")
+                // console.log(extractedData[key])
                 continue
             }
             extractedData[key] = match ? match[1].trim() : 'no';

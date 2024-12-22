@@ -12,6 +12,7 @@ module.exports = async (filePath, fileName, type) => {
             const data = await interpretData(pdfText);
             data.fileName = fileName
             data.Type = type
+            // console.log(data)
             return data
             // writeOrAppendToExcel(data, saveLocation, fileName, type);
         } else {
